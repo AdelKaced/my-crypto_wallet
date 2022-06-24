@@ -1,0 +1,14 @@
+.search {
+  input {
+    width: 80px;
+    border-radius: 8px;
+    user-select: none;
+    background-color: rgb(230, 230, 230);
+    outline: none;
+  }
+
+  input::placeholder {
+      font-size: 0.7rem;
+
+  }
+}

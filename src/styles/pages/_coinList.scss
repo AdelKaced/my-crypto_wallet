@@ -1,0 +1,43 @@
+.coinList {
+    padding: 20px 0;
+  table {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+  .coin-logo {
+    height: 24px;
+    width: 24px;
+    border-radius: 12px;
+    transform: translateY(5px);
+  }
+
+  th,
+  td {
+    padding: 12px;
+    text-align: right;
+    border-bottom: solid 1px #eff2f5;
+  }
+
+  th {
+    border-top: solid 1px #eff2f5;
+  }
+
+  .name,
+  .rank {
+    text-align: left;
+  }
+  .name {
+      font-weight: 400;
+  }
+
+  .symbol{
+      color: rgba(0, 0, 0, 0.39);
+      text-transform: uppercase;
+  }
+
+  i {
+    font-size: 0.8rem;
+    color: rgba(131, 131, 131, 0.205);
+    margin-right: 5px;
+  }
+}

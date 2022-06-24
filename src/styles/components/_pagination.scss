@@ -1,0 +1,23 @@
+.pagination {
+  padding: 0px 0 20px;
+  font-size: 0.8rem;
+
+  ul {
+    display: flex;
+    justify-content: center;
+  }
+
+  li {
+    margin-right: 15px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .active {
+    color: white;
+    background-color: $color-2;
+  }
+}

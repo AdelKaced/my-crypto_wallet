@@ -1,0 +1,11 @@
+.App {
+  width: 80%;
+  margin: 0 auto;
+
+  .navigation {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    font-size: 0.8rem;
+  }
+}
+

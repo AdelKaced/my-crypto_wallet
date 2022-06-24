@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
+import { createContext, useEffect, useState } from 'react';
+import Connexion from './components/Connexion';
+import Navigation from './components/Navigation';
+import Home from './pages/Home';
+
+export const CoinsContext = createContext();
 
 function App() {
+  const [coins, setCoins] = useState([]);
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    getData()
+  }, []);
+
+  const getData = () => {
+    axios
+      .get(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=${page}&sparkline=false`
+      )
+      .then((res) => res.data)
+      .then((data) => setCoins(data))
+      .catch((error) => console.log(error));
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="navigation">
+        <Navigation />
+        <Connexion />
+      </div>
+      <CoinsContext.Provider value={{ coins, setCoins, page, setPage }}>
+        <Home />
+      </CoinsContext.Provider>
     </div>
   );
 }
