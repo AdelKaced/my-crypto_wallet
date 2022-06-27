@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
+import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
 import { CoinsContext } from '../App';
 
 const CoinList = () => {
@@ -23,13 +24,14 @@ const CoinList = () => {
             <th>MarketCap</th>
             <th>ATH</th>
             <th>Percent ATH</th>
+            <th>Last 7days</th>
           </tr>
         </thead>
         <tbody>
           {coins.map((coin) => (
-            <tr>
+            <tr key={coin.symbol}>
               <td className="rank">
-                <i class="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
                 {coin.market_cap_rank}
               </td>
               <td className="name">
@@ -37,10 +39,17 @@ const CoinList = () => {
                 {coin.name} <span className="symbol">{coin.symbol}</span>
               </td>
               <td> {coin.current_price}</td>
-              <td>{coin.price_change_percentage_24h}%</td>
+              <td>
+                {Math.round(coin.price_change_percentage_24h * 100) / 100}%
+              </td>
               <td>{coin.market_cap}</td>
               <td>{coin.ath}</td>
               <td>{athVariation(coin)}%</td>
+              <td>
+                <Sparklines data={coin.sparkline_in_7d.price}>
+                  <SparklinesLine color="#06FF8A"  style={{ fill: "none"}} />
+                </Sparklines>
+              </td>
             </tr>
           ))}
         </tbody>

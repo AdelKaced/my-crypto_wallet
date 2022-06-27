@@ -16,17 +16,23 @@
     padding: 12px;
     text-align: right;
     border-bottom: solid 1px #eff2f5;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   th {
     border-top: solid 1px #eff2f5;
+    
   }
 
   .name,
   .rank {
-    text-align: left;
+    text-align: center;
+    white-space: nowrap;
   }
   .name {
+    text-align: left;
       font-weight: 400;
   }
 
@@ -38,6 +44,6 @@
   i {
     font-size: 0.8rem;
     color: rgba(131, 131, 131, 0.205);
-    margin-right: 5px;
+    padding-right: 8px;
   }
 }
