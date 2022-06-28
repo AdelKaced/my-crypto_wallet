@@ -1,0 +1,41 @@
+.coinChart {
+  padding: 50px 0;
+  font-size: 0.9rem;
+
+  .btn-container {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .chart {
+    padding: 50px 0;
+  }
+  .btn {
+    padding: 4px 8px;
+    cursor: pointer;
+    &:hover {
+      // background: $color-2;
+      color: $color-2
+    }
+  }
+  .active-btn {
+    background: $color-2;
+    color: white;
+    border-radius: 5px;
+    
+    overflow: hidden;
+    &:hover {
+      // background: $color-2;
+      color:white;
+  }
+}
+  .recharts-wrapper{
+      width: 100% !important
+  }
+  .recharts-surface {
+    width: 100% 
+  }
+  .recharts-layer  {
+    font-size: 0.6rem
+  }
+}

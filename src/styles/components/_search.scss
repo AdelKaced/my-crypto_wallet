@@ -1,5 +1,5 @@
 .search {
-
+  
   position: relative;
   input {
     width: 100px;
@@ -7,13 +7,17 @@
     user-select: none;
     background-color: rgb(230, 230, 230);
     outline: none;
-    border:none
+    border:none;
+    cursor:pointer;
   }
 
   input::placeholder {
       font-size: 0.7rem;
       text-indent: 10px;
+  }
 
+  input:focus{
+    color: grey
   }
   .search-results{
     padding: 5px 20px;

@@ -2,22 +2,41 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
+
+  #Login:hover{
+    color: #3861fb;
+  }
 
   #SignUp {
     padding: 4px 8px;
     background: $color-2;
     color: white;
     border-radius: 5px;
+    white-space: nowrap;
+    margin :0 10px;
   }
   #SignUp:hover {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),
       rgb(56, 97, 251);
   }
+  button {
+    padding: 3px 7px;
+    background: $color-2;
+    border-radius: 5px;
+    border: 1px solid rgb(207, 214, 228);
+    outline: none;
+    color:white;
+    margin :0 10px;
+    cursor: pointer;
+  }
+  .name {
+    white-space: nowrap;
+    // color: $color-2;
+    font-weight: 500;
+  }
 }
 
-.connexion div {
-  margin-right: 20px;
-}
 
 .modal {
   position: fixed;
@@ -65,6 +84,9 @@
     border-radius: 5px;
     border: 1px solid rgb(207, 214, 228);
     outline: none;
+    color:white;
+    // font-weight: 600;
+    font-size:1rem
   }
   span {
     color: $color-2;

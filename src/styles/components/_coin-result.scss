@@ -1,0 +1,67 @@
+.result-header {
+  background: rgb(228, 228, 228);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+
+  h1 {
+    text-transform: capitalize;
+    font-size: 32px;
+    line-height: 42px;
+    margin: 0 8px 0 8px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-weight: 700;
+  }
+  .main {
+    display: flex;
+    align-items: center;
+  }
+  img {
+    border-radius: 50px;
+  }
+  h2 {
+    text-transform: uppercase;
+    color: rgb(177, 177, 177);
+  }
+
+  .market-data {
+    padding: 0 10px;
+  }
+
+  .current-price {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  h3 {
+    margin-right: 20px;
+    font-size: 26px;
+    line-height: 42px;
+    display: flex;
+    font-weight: 700;
+  }
+  h4 {
+    color: rgb(255, 255, 255);
+    background-color: rgb(22, 199, 132);
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 3px;
+  }
+  .progess {
+    display: flex;
+    align-items: center;
+  }
+
+  .progess-bar {
+    margin: 0 5px;
+    height: 3px;
+    width: 80px;
+    background: rgb(182, 182, 182);
+  }
+  .current-progess {
+    background: #3861fb;
+    height: 3px;
+  }
+}

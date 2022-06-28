@@ -1,6 +1,5 @@
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
-import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { CoinsContext } from '../App';
 
 const CoinList = () => {
@@ -24,7 +23,6 @@ const CoinList = () => {
             <th>MarketCap</th>
             <th>ATH</th>
             <th>Percent ATH</th>
-            <th>Last 7days</th>
           </tr>
         </thead>
         <tbody>
@@ -34,10 +32,14 @@ const CoinList = () => {
                 <i className="fa-solid fa-star"></i>
                 {coin.market_cap_rank}
               </td>
+
               <td className="name">
                 <img src={coin.image} alt={coin.symbol} className="coin-logo" />{' '}
-                {coin.name} <span className="symbol">{coin.symbol}</span>
+                <Link to={`/currencies/${coin.id}`}>
+                  {coin.name} <span className="symbol">{coin.symbol}</span>{' '}
+                </Link>
               </td>
+
               <td> {coin.current_price}</td>
               <td>
                 {Math.round(coin.price_change_percentage_24h * 100) / 100}%
@@ -45,11 +47,6 @@ const CoinList = () => {
               <td>{coin.market_cap}</td>
               <td>{coin.ath}</td>
               <td>{athVariation(coin)}%</td>
-              <td>
-                <Sparklines data={coin.sparkline_in_7d.price}>
-                  <SparklinesLine color="#06FF8A"  style={{ fill: "none"}} />
-                </Sparklines>
-              </td>
             </tr>
           ))}
         </tbody>

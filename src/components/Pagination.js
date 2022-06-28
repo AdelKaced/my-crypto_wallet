@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { CoinsContext } from '../App';
 
 const Pagination = () => {
@@ -36,8 +36,8 @@ const Pagination = () => {
           ></i>
         </li>
         {pages.length > 0 &&
-          pages.map((page,index) => (
-            <li key={index}
+          pages.map((page) => (
+            <li key={page}
               onClick={() => {
                 typeof page === 'number' && setPage(page);
               }}

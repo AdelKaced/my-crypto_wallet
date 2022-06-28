@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import SearchResult from './SearchResult';
 
 const Search = () => {
   const [coinsData, setCoinsData] = useState([]);
   const [input, setInput] = useState('');
+  const [displaySearch, setDisplaySearch] = useState(false);
 
   useEffect(() => {
     axios
@@ -16,23 +18,30 @@ const Search = () => {
       });
   }, []);
 
-  console.log(input);
+  const handleInput = (e) => {
+    if (e.target.value) {
+      setDisplaySearch(true);
+    } else {
+      setDisplaySearch(false);
+    }
+    setInput(e.target.value);
+  };
 
   return (
     <div className="search">
-      <input
-        type="text"
-        placeholder="Search"
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <div className={input ? "search-results display" : "search-results "}>
+      <input type="text" placeholder="Search" onChange={handleInput} />
+      <div className={displaySearch ? 'search-results display' : 'search-results '}>
         {input &&
           coinsData
             .filter(
               (coin) =>
                 coin.id.startsWith(input) || coin.symbol.startsWith(input)
             )
-            .map((coin) => <SearchResult coin={coin} key={coin.id} />)}
+            .map((coin) => (
+              <Link key={coin.id} to={`/currencies/${coin.id}`}>
+                <SearchResult coin={coin} setDisplaySearch={setDisplaySearch} setInput={setInput} key={coin.id} />{' '}
+              </Link>
+            ))}
       </div>
     </div>
   );
