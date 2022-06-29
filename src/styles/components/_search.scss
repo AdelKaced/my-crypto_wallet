@@ -2,7 +2,7 @@
   
   position: relative;
   input {
-    width: 100px;
+    width:  180px;
     border-radius: 8px;
     user-select: none;
     background-color: rgb(230, 230, 230);
@@ -17,7 +17,9 @@
   }
 
   input:focus{
-    color: grey
+    color: rgb(41, 41, 41);
+    width:180px;
+    background: rgb(241, 241, 241)
   }
   .search-results{
     padding: 5px 20px;
@@ -26,8 +28,8 @@
     width: 200px;
     height: 250px;
     background: rgb(248, 248, 248);
-    right: -20px;
-    top: 35px;
+    right: -13px;
+    top: 28px;
     border-radius: 8px;
     overflow: hidden;
     overflow-y:scroll;

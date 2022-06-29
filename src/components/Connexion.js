@@ -1,6 +1,7 @@
 import { signOut } from 'firebase/auth';
-import React, { useContext, useState } from 'react';
-import { CoinsContext } from '../App';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
 import { auth } from '../utils/firebase.config';
 import Login from './Login';
 import Search from './Search';
@@ -8,7 +9,9 @@ import SignUp from './SignUp';
 
 const Connexion = () => {
   const [modal, setModal] = useState('');
-  const user = useContext(CoinsContext).user;
+  const [displayText, setDisplayText] = useState(false);
+
+  const user = useSelector(selectUser);
   console.log(user);
 
   const handleConnexion = (e) => {
@@ -24,9 +27,14 @@ const Connexion = () => {
       {user ? (
         <div className="connexion">
           <div className="name">Welcome {user.displayName}</div>
-          <button onClick={handleLogout}>
+          <button
+            onClick={handleLogout}
+            onMouseOver={() => setDisplayText(true)}
+            onMouseOut={() => setDisplayText(false)}
+          >
             <i className="fa-solid fa-arrow-right-from-bracket"></i>
           </button>
+          {displayText && <p className="btn-text">Logout</p>}
           <Search />
         </div>
       ) : (

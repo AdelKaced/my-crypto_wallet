@@ -1,15 +1,43 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
+import React, { useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { CoinsContext } from '../App';
+import { favorites, getFavorites, selectUser } from '../features/userSlice';
+import { db } from '../utils/firebase.config';
+import CoinRow from './CoinRow';
 
 const CoinList = () => {
   const coins = useContext(CoinsContext).coins;
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+  const dbFavorites = useSelector(favorites);
 
-  const athVariation = (coin) => {
-    let variation = ((coin.ath - coin.current_price) / coin.ath) * 100;
-    variation = Math.round(variation * 100) / 100;
-    return variation;
+  // check if coinid is present the db coin array
+  const filterFavorites = (id) => {
+    // get data from connected user
+    const filterFav =  dbFavorites?.find((fav) => user?.uid === fav.userId);
+    console.log(filterFav);
+    return filterFav.coin.includes(id)
+  }
+
+  const getData = () => {
+    getDocs(collection(db, 'favorites')).then((res) => {
+      dispatch(
+        getFavorites(res.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      );
+    });
   };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  // const isFilterFavorite = (id) => {
+  //   console.log(filterFavorites);
+  //   console.log(id);
+  //   const isFav = filterFavorites?.includes(id);
+  //   console.log(isFav);
+  // }
 
   return (
     <div className="coinList">
@@ -27,27 +55,12 @@ const CoinList = () => {
         </thead>
         <tbody>
           {coins.map((coin) => (
-            <tr key={coin.symbol}>
-              <td className="rank">
-                <i className="fa-solid fa-star"></i>
-                {coin.market_cap_rank}
-              </td>
-
-              <td className="name">
-                <img src={coin.image} alt={coin.symbol} className="coin-logo" />{' '}
-                <Link to={`/currencies/${coin.id}`}>
-                  {coin.name} <span className="symbol">{coin.symbol}</span>{' '}
-                </Link>
-              </td>
-
-              <td> {coin.current_price}</td>
-              <td>
-                {Math.round(coin.price_change_percentage_24h * 100) / 100}%
-              </td>
-              <td>{coin.market_cap}</td>
-              <td>{coin.ath}</td>
-              <td>{athVariation(coin)}%</td>
-            </tr>
+            <CoinRow
+              key={coin.symbol}
+              coin={coin}
+              userId={user?.uid}
+              fav={filterFavorites(coin.id)}
+            />
           ))}
         </tbody>
       </table>

@@ -3,6 +3,8 @@
   justify-content: flex-end;
   align-items: center;
   cursor: pointer;
+  position: relative;
+ 
 
   #Login:hover{
     color: #3861fb;
@@ -21,14 +23,31 @@
       rgb(56, 97, 251);
   }
   button {
-    padding: 3px 7px;
+    
+    padding: 2px 6px;
     background: $color-2;
     border-radius: 5px;
-    border: 1px solid rgb(207, 214, 228);
+    border: none;
     outline: none;
     color:white;
     margin :0 10px;
     cursor: pointer;
+   
+    &:hover{
+      filter: brightness(110%);
+    }
+  }
+  .btn-text {
+    position: absolute;
+    width: 70px;
+    top: 30px;
+    right:170px;
+    background: rgb(224, 224, 224);
+    border-radius: 5px;
+    padding: 2px px;
+    font-weight: 400;
+    text-align: center;
+    color: rgb(53, 53, 53)
   }
   .name {
     white-space: nowrap;
@@ -63,7 +82,7 @@
     position: absolute;
     right: 20px;
     top: 20px;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   form {

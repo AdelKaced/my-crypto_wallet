@@ -6,6 +6,7 @@ import CoinChart from './CoinChart';
 const CoinResult = () => {
   const [coinData, setCoinData] = useState('');
   const params = useParams();
+  
 
   const getCoinData = () => {
     axios
