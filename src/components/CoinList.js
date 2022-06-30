@@ -12,14 +12,21 @@ const CoinList = () => {
   const dispatch = useDispatch();
   const dbFavorites = useSelector(favorites);
 
-  // check if coinid is present the db coin array
-  const filterFavorites = (id) => {
+  // get data from current user
+  const filterFavorites = () => {
     // get data from connected user
-    const filterFav =  dbFavorites?.find((fav) => user?.uid === fav.userId);
-    console.log(filterFav);
-    return filterFav.coin.includes(id)
-  }
+    if (dbFavorites) {
+      console.log(dbFavorites);
+      return dbFavorites?.find((fav) => user?.uid === fav.userId);
+    }
+  };
 
+  // check if coinid is present the db coin array
+  const isCoinFav = (id) => {
+    return filterFavorites()?.coin.includes(id);
+  };
+
+  // get data from firebase and set value on Redux
   const getData = () => {
     getDocs(collection(db, 'favorites')).then((res) => {
       dispatch(
@@ -31,13 +38,6 @@ const CoinList = () => {
   useEffect(() => {
     getData();
   }, []);
-
-  // const isFilterFavorite = (id) => {
-  //   console.log(filterFavorites);
-  //   console.log(id);
-  //   const isFav = filterFavorites?.includes(id);
-  //   console.log(isFav);
-  // }
 
   return (
     <div className="coinList">
@@ -59,7 +59,8 @@ const CoinList = () => {
               key={coin.symbol}
               coin={coin}
               userId={user?.uid}
-              fav={filterFavorites(coin.id)}
+              hasFav={filterFavorites()} // check if current user has at least one favorite
+              isFav={isCoinFav(coin.id)} // check if coin mapped is one of the favorite coins
             />
           ))}
         </tbody>

@@ -1,21 +1,45 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../utils/firebase.config';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavorite, updateFavorite } from '../features/userSlice';
 
-const CoinRow = ({ coin, userId, fav}) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+const CoinRow = ({ coin, userId, isFav, hasFav }) => {
   const [errorConnexion, setErrorConnexion] = useState(false);
 
-  const handleFavorite = () => {
+  const dispatch = useDispatch();
+  console.log(hasFav);
+  const handleFavorite = async () => {
     if (userId) {
-      const data = {
+      let data = {
         userId,
         coin: [coin.id],
       };
       console.log(data);
-      addDoc(collection(db, 'favorites'), data);
-      setIsFavorite(!isFavorite);
+
+      // when user don't have any favorite
+      if (!hasFav) {
+        await addDoc(collection(db, 'favorites'), data).then(() =>
+          dispatch(addFavorite(data))
+        );
+      } else {
+        // when user has already one or more favorite
+        const dbData = {
+          userId,
+          // if coin id is not on the array I push on it else I remove from the array
+          coin: !hasFav.coin.includes(data.coin[0])
+            ? [...hasFav.coin, data.coin[0]]
+            : hasFav.coin.filter((id) => id !== data.coin[0]),
+        };
+
+        await updateDoc(doc(db, 'favorites', hasFav.id), dbData).then(() => {
+          // add additional data to redux to match first render of dbFavorites
+          dbData.id = hasFav.id;
+          dispatch(updateFavorite(dbData));
+        });
+      }
+      // setIsFavorite(!isFavorite);
     } else {
       setErrorConnexion(true);
       setTimeout(() => {
@@ -34,9 +58,7 @@ const CoinRow = ({ coin, userId, fav}) => {
     <tr>
       <td className="rank">
         <i
-          className={
-            isFavorite ? 'fa-solid fa-star favorite' : 'fa-solid fa-star'
-          }
+          className={isFav ? 'fa-solid fa-star favorite' : 'fa-solid fa-star'}
           onClick={handleFavorite}
         ></i>
         {errorConnexion && <p className="message">Must be connected !</p>}

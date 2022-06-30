@@ -29,7 +29,7 @@ const SignUp = ({ setModal }) => {
       <div className="form-modal">
         <i onClick={() => setModal('')} className="fa-solid fa-xmark"></i>
 
-        <h2>SignUp</h2>
+        <h2>Sign Up</h2>
         <p>
           Already have an account ?
           <span onClick={() => setModal('Login')}> Log In</span>

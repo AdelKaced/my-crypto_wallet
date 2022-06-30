@@ -12,7 +12,6 @@ const Connexion = () => {
   const [displayText, setDisplayText] = useState(false);
 
   const user = useSelector(selectUser);
-  console.log(user);
 
   const handleConnexion = (e) => {
     console.log(e.target.id);
@@ -20,6 +19,8 @@ const Connexion = () => {
   };
 
   const handleLogout = async () => {
+    setModal('');
+    setDisplayText(false)
     await signOut(auth);
   };
   return (
