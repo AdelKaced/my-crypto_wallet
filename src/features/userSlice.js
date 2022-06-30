@@ -12,25 +12,25 @@ const userSlice = createSlice({
     login: (state, action) => {
       state.user = action.payload;
     },
+    logout: (state) => {
+      state.user = null;
+    },
     getFavorites: (state, action) => {
       state.favorites = action.payload;
     },
     addFavorite: (state, action) => {
-      console.log(state);
-      console.log(action.payload);
-      state.favorites = [action.payload];
+      state.favorites = action.payload;
     },
     updateFavorite: (state, action) => {
-      console.log(state);
-      console.log(action.payload);
       // need to be on a array to match with dbFAvorites on coinList data
-      state.favorites = [action.payload];
+      state.favorites = action.payload;
     },
   },
 });
 
 export const {
   login,
+  logout,
   getFavorites,
   addFavorite,
   updateFavorite,

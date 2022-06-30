@@ -1,10 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from '../features/userSlice';
 import { auth } from '../utils/firebase.config';
 
 const SignUp = ({ setModal }) => {
   const email = useRef();
   const password = useRef();
-  const displayName = useRef();
+  const [displayName, setDisplayName] = useState('');
+  const dispatch = useDispatch();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -15,9 +18,11 @@ const SignUp = ({ setModal }) => {
           password.current.value
         )
         .then((userAuth) => {
-          userAuth.user.updateProfile({
-            displayName: displayName.current.value,
-          });
+          userAuth.user
+            .updateProfile({
+              displayName,
+            })
+            .then(() => dispatch(login(userAuth.user)));
         });
     } catch (error) {
       console.log(error);
@@ -39,7 +44,7 @@ const SignUp = ({ setModal }) => {
           <input
             type="text"
             placeholder="enter your pseudo"
-            ref={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
           ></input>
           <label>Email adress</label>
           <input

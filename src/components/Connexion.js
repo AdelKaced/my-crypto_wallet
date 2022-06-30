@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../features/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout, selectUser } from '../features/userSlice';
 import { auth } from '../utils/firebase.config';
 import Login from './Login';
 import Search from './Search';
@@ -10,6 +10,8 @@ import SignUp from './SignUp';
 const Connexion = () => {
   const [modal, setModal] = useState('');
   const [displayText, setDisplayText] = useState(false);
+
+  const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
 
@@ -21,7 +23,7 @@ const Connexion = () => {
   const handleLogout = async () => {
     setModal('');
     setDisplayText(false)
-    await signOut(auth);
+    await signOut(auth).then(()=> dispatch(logout()))
   };
   return (
     <div>

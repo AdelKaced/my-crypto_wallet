@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../utils/firebase.config';
-import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
-import { useDispatch, useSelector } from 'react-redux';
-import { addFavorite, updateFavorite } from '../features/userSlice';
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  updateDoc,
+} from 'firebase/firestore';
+import { useDispatch } from 'react-redux';
+import {
+  addFavorite,
+  getFavorites,
+  updateFavorite,
+} from '../features/userSlice';
 
 const CoinRow = ({ coin, userId, isFav, hasFav }) => {
   const [errorConnexion, setErrorConnexion] = useState(false);
 
   const dispatch = useDispatch();
-  console.log(hasFav);
   const handleFavorite = async () => {
     if (userId) {
       let data = {
@@ -18,11 +27,32 @@ const CoinRow = ({ coin, userId, isFav, hasFav }) => {
       };
       console.log(data);
 
-      // when user don't have any favorite
       if (!hasFav) {
-        await addDoc(collection(db, 'favorites'), data).then(() =>
-          dispatch(addFavorite(data))
-        );
+        // add data when user don't have any favorite
+        await addDoc(collection(db, 'favorites'), data).then(() => {
+          dispatch(addFavorite(data));
+
+          // just after adding collection getfavorite allow to get the id of document
+          // getDocs(collection(db, 'favorites')).then((res) => {
+          //   dispatch(
+          //     getFavorites(
+          //       res.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+          //     )
+          //   );
+          // });
+          getDocs(collection(db, 'favorites')).then((res) => {
+            let favData = [];
+            res.docs.forEach((doc) => {
+              const data = { ...doc.data(), id: doc.id };
+              if (data.userId === userId) {
+                favData.push(data);
+              }
+            });
+            dispatch(getFavorites(...favData));
+          });
+
+          // get id of data
+        });
       } else {
         // when user has already one or more favorite
         const dbData = {
@@ -32,6 +62,8 @@ const CoinRow = ({ coin, userId, isFav, hasFav }) => {
             ? [...hasFav.coin, data.coin[0]]
             : hasFav.coin.filter((id) => id !== data.coin[0]),
         };
+
+        console.log('dbData', dbData);
 
         await updateDoc(doc(db, 'favorites', hasFav.id), dbData).then(() => {
           // add additional data to redux to match first render of dbFavorites

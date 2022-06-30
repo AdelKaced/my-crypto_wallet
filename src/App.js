@@ -31,8 +31,9 @@ function App() {
   useEffect(() => {
     getData();
     onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser);
-      dispatch(login(currentUser));
+      if (currentUser.displayName) {
+        dispatch(login(currentUser));
+      }
     });
     // eslint-disable-next-line
   }, [page]);
@@ -47,6 +48,7 @@ function App() {
           </div>
           <Routes>
             <Route path="/" element={<Home />} />
+            {/* <Route path="/watchlist" element={<WatchList />} /> */}
             <Route path="/currencies/:id" element={<CoinResult />} />
           </Routes>
         </BrowserRouter>
