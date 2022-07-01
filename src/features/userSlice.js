@@ -23,6 +23,7 @@ const userSlice = createSlice({
     },
     updateFavorite: (state, action) => {
       // need to be on a array to match with dbFAvorites on coinList data
+      console.log(action.payload);
       state.favorites = action.payload;
     },
   },

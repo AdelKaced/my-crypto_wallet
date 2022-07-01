@@ -40,6 +40,8 @@ const CoinRow = ({ coin, userId, isFav, hasFav }) => {
           //     )
           //   );
           // });
+          
+            // just after adding collection getfavorite allow to get the id of document
           getDocs(collection(db, 'favorites')).then((res) => {
             let favData = [];
             res.docs.forEach((doc) => {

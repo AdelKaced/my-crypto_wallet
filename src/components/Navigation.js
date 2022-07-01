@@ -8,14 +8,12 @@ const Navigation = () => {
   const context = useContext(CoinsContext);
   const myFavorites = useSelector(favorites);
 
-  console.log(context.coins);
-  console.log(myFavorites);
 
   const getFavorites = () => {
     const filterData = context.coins.filter((coin) =>
       myFavorites.coin.includes(coin.id)
     );
-    console.log(filterData);
+    context.setCoins(filterData);
   };
   return (
     <nav>
@@ -24,7 +22,7 @@ const Navigation = () => {
         <NavLink to="/">
           <li>Crypto Market</li>
         </NavLink>
-        <li onClick={getFavorites}>WatchList</li>
+        <NavLink to="/watchlist"><li>WatchList</li></NavLink>
         <li>Wallets</li>
       </ul>
     </nav>
