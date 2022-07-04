@@ -26,12 +26,44 @@
     cursor: pointer;
   }
 
-  .name,
-  .rank {
+  // th::before {
+  //   content: '\0048';
+  // }
+
+  th span.sort {
+    position: relative;
+    width: 50px;
+    margin-right: 20px;
+  }
+
+  th span.sort:after {
+    border: 6px solid transparent;
+    content: '';
+    display: block;
+    height: 0;
+    left: 3px;
+    position: absolute;
+    width: 0;
+    margin-top: 1px;
+    
+  }
+
+  th span.sort.ascending:after{
+    border-top-color: #666;
+    top: 40%;
+  }
+
+  th span.sort.descending:after{
+    border-bottom-color: #666;
+    top: 10%;
+  }
+
+  .id,
+  .market_cap_rank {
     text-align: center;
     white-space: nowrap;
   }
-  .name {
+  .id {
     text-align: left;
     font-weight: 400;
   }
@@ -61,6 +93,6 @@
     font-weight: 400;
     text-align: center;
     color: rgb(88, 88, 88);
-    font-size:0.8rem;
+    font-size: 0.8rem;
   }
 }

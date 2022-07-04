@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { updateFavorite } from '../features/userSlice';
+import { formatCurrency, formatPercent, formatMarketCap } from '../lib';
 import { db } from '../utils/firebase.config';
 
 const CoinRowWatchlist = ({ coin, dbFavorites }) => {
@@ -16,7 +17,6 @@ const CoinRowWatchlist = ({ coin, dbFavorites }) => {
       // remove coin from favory list
       coin: dbFavorites.coin.filter((res) => res !== coin),
     };
-    console.log(data);
     updateDoc(doc(db, 'favorites', dbFavorites.id), data).then(() => {
       data.id = dbFavorites.id; // add doc id to match with data when get it if not we can make action only one time
       dispatch(updateFavorite(data));
@@ -33,11 +33,11 @@ const CoinRowWatchlist = ({ coin, dbFavorites }) => {
 
   return (
     <tr>
-      <td className="rank">
+      <td className="market_rank">
         <i className={'fa-solid fa-star favorite'} onClick={handleFavorite}></i>
         {favCoin.market_cap_rank}
       </td>
-      <td className="name">
+      <td className="id">
         <img
           src={favCoin.image?.small}
           alt={favCoin.symbol}
@@ -48,15 +48,11 @@ const CoinRowWatchlist = ({ coin, dbFavorites }) => {
         </Link>
       </td>
 
-      <td> {favCoin.market_data?.current_price.usd}</td>
-      <td>
-        {Math.round(favCoin.market_data?.price_change_percentage_24h * 100) /
-          100}
-        %
-      </td>
-      <td>{favCoin.market_data?.market_cap.usd}</td>
-      <td>{favCoin.market_data?.ath.usd}</td>
-      <td>{favCoin.market_data?.ath_change_percentage.usd}%</td>
+      <td> {formatCurrency(favCoin.market_data?.current_price.usd)}</td>
+      <td>{formatPercent(favCoin.market_data?.price_change_percentage_24h)}</td>
+      <td>{formatMarketCap(favCoin.market_data?.market_cap.usd)}</td>
+      <td>{formatCurrency(favCoin.market_data?.ath.usd)}</td>
+      <td>{formatPercent(favCoin.market_data?.ath_change_percentage.usd)}</td>
     </tr>
   );
 };

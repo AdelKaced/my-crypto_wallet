@@ -1,5 +1,3 @@
-import { getQueriesForElement } from '@testing-library/react';
-import axios from 'axios';
 import { collection, getDocs } from 'firebase/firestore';
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,11 +8,22 @@ import CoinRow from './CoinRow';
 import CoinRowWatchlist from './CoinRowWatchlist';
 
 const CoinList = ({ watchlist }) => {
-  const [sortBy, setSortBy] = useState({});
+  const [sortBy, setSortBy] = useState({ market_cap_rank: false });
   const coins = useContext(CoinsContext).coins;
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const dbFavorites = useSelector(favorites);
+
+  console.log(dbFavorites);
+  const keyArray = [
+    'market_cap_rank',
+    'id',
+    'current_price',
+    'price_change_24h',
+    'market_cap',
+    'ath',
+    'ath_change_percentage',
+  ];
 
   const isCoinFav = (coinId) => {
     return dbFavorites?.coin?.includes(coinId);
@@ -40,27 +49,12 @@ const CoinList = ({ watchlist }) => {
 
   const handleSort = (e) => {
     console.log(e.target.id);
-    // if (sortBy === e.target.id) {
-    //   console.log('hein');
-    //   setSortBy('');
-    // } else {
-    //   setSortBy(e.target.id);
-    // }
-    setSortBy({ [e.target.id]: !sortBy[e.target.id] });
+    if (e.target.id) setSortBy({ [e.target.id]: !sortBy[e.target.id] });
   };
 
   const getSort = (a, b) => {
     // get key on the object sortBy and apply rules depending of case
     const keys = Object.keys(sortBy)[0];
-    const keyArray = [
-      'market_cap_rank',
-      'id',
-      'current_price',
-      'price_change_24h',
-      'market_cap',
-      'ath',
-      'ath_change_percentage',
-    ];
 
     // loop in keyarray to avoid repeat action
     for (let i in keyArray) {
@@ -80,77 +74,102 @@ const CoinList = ({ watchlist }) => {
         }
       }
     }
-
-    // if (keys === 'market_cap_rank') {
-    //   if (sortBy[keys]) {
-    //     return b.market_cap_rank - a.market_cap_rank;
-    //   } else {
-    //     return a.market_cap_rank - b.market_cap_rank;
-    //   }
-    // } else if (keys === 'id') {
-    //   if (sortBy[keys]) {
-    //     return b.id.localeCompare(a.id);
-    //   } else {
-    //     return a.id.localeCompare(b.id);
-    //   }
-    // } else if (keys === 'current_price') {
-    //   if (sortBy['current_price']) {
-    //     return b.current_price - a.current_price;
-    //   } else {
-    //     return a.current_price - b.current_price;
-    //   }
-    // } else if (keys === 'price_change_24h') {
-    //   if (sortBy['price_change_24h']) {
-    //     return b.price_change_24h - a.price_change_24h;
-    //   } else {
-    //     return a.price_change_24h - b.price_change_24h;
-    //   }
-    // } else if (keys === 'market_cap') {
-    //   if (sortBy['market_cap']) {
-    //     return b.market_cap - a.market_cap;
-    //   } else {
-    //     return a.market_cap - b.market_cap;
-    //   }
-    // } else if (keys === 'ath') {
-    //   if (sortBy['ath']) {
-    //     return b.ath - a.ath;
-    //   } else {
-    //     return a.ath - b.ath;
-    //   }
-    // } else if (keys === 'ath_change_percentage') {
-    //   if (sortBy['ath_change_percentage']) {
-    //     return b.ath_change_percentage - a.ath_change_percentage;
-    //   } else {
-    //     return a.ath_change_percentage - b.ath_change_percentage;
-    //   }
-    // }
   };
 
   return (
     <div className="coinList">
+      {!watchlist || user ?
       <table>
         <thead>
           <tr>
-            <th className="rank" id="market_cap_rank" onClick={handleSort}>
+            <th
+              className="market_cap_rank"
+              id="market_cap_rank"
+              onClick={handleSort}
+            >
+              {' '}
               #
+              {!watchlist && <span
+                className={
+                  Object.keys(sortBy)[0] !== 'market_cap_rank'
+                    ? 'sort'
+                    : sortBy['market_cap_rank']
+                    ? 'sort ascending'
+                    : 'sort descending'
+                }
+              ></span>}
             </th>
-            <th className="name" id="id" onClick={handleSort}>
+            <th className="id" id="id" onClick={handleSort}>
               Name
+              {!watchlist && <span
+                className={
+                  Object.keys(sortBy)[0] !== 'id'
+                    ? 'sort'
+                    : sortBy['id']
+                    ? 'sort ascending'
+                    : 'sort descending'
+                }
+              ></span>}
             </th>
             <th id="current_price" onClick={handleSort}>
               Price
+              {!watchlist && <span
+                className={
+                  Object.keys(sortBy)[0] !== 'current_price'
+                    ? 'sort'
+                    : sortBy['current_price']
+                    ? 'sort ascending'
+                    : 'sort descending'
+                }
+              ></span>}
             </th>
             <th id="price_change_24h" onClick={handleSort}>
               24h %
+              {!watchlist && <span
+                className={
+                  Object.keys(sortBy)[0] !== 'price_change_24h'
+                    ? 'sort'
+                    : sortBy['price_change_24h']
+                    ? 'sort ascending'
+                    : 'sort descending'
+                }
+              ></span>}
             </th>
             <th id="market_cap" onClick={handleSort}>
               MarketCap
+              {!watchlist && <span
+                className={
+                  Object.keys(sortBy)[0] !== 'market_cap'
+                    ? 'sort'
+                    : sortBy['market_cap']
+                    ? 'sort ascending'
+                    : 'sort descending'
+                }
+              ></span>}
             </th>
             <th id="ath" onClick={handleSort}>
               ATH
+              {!watchlist && <span
+                className={
+                  Object.keys(sortBy)[0] !== 'ath'
+                    ? 'sort'
+                    : sortBy['ath']
+                    ? 'sort ascending'
+                    : 'sort descending'
+                }
+              ></span>}
             </th>
             <th id="ath_change_percentage" onClick={handleSort}>
               Percent ATH
+              {!watchlist && <span
+                className={
+                  Object.keys(sortBy)[0] !== 'ath_change_percentage'
+                    ? 'sort'
+                    : sortBy['ath_change_percentage']
+                    ? 'sort ascending'
+                    : 'sort descending'
+                }
+              ></span>}
             </th>
           </tr>
         </thead>
@@ -168,17 +187,21 @@ const CoinList = ({ watchlist }) => {
                     isFav={isCoinFav(coin.id)} // check if coin mapped is one of the favorite coins
                   />
                 ))
-            : dbFavorites?.coin
-                // .sort((a,b) => )
-                .map((fav) => (
-                  <CoinRowWatchlist
-                    key={fav}
-                    coin={fav}
-                    dbFavorites={dbFavorites}
-                  />
-                ))}
+            :  dbFavorites && [...dbFavorites?.coin]
+            // .sort((a, b) => b.localeCompare(a))
+            .map((fav) => (
+                <CoinRowWatchlist
+                  key={fav}
+                  coin={fav}
+                  dbFavorites={dbFavorites}
+                />
+              ))
+              }
         </tbody>
       </table>
+     : <p>
+       You need to be connected !
+     </p>   }
     </div>
   );
 };

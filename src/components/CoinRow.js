@@ -14,6 +14,8 @@ import {
   getFavorites,
   updateFavorite,
 } from '../features/userSlice';
+import { formatMarketCap, formatCurrency, formatPercent } from '../lib';
+
 
 const CoinRow = ({ coin, userId, isFav, hasFav }) => {
   const [errorConnexion, setErrorConnexion] = useState(false);
@@ -25,7 +27,6 @@ const CoinRow = ({ coin, userId, isFav, hasFav }) => {
         userId,
         coin: [coin.id],
       };
-      console.log(data);
 
       if (!hasFav) {
         // add data when user don't have any favorite
@@ -33,15 +34,6 @@ const CoinRow = ({ coin, userId, isFav, hasFav }) => {
           dispatch(addFavorite(data));
 
           // just after adding collection getfavorite allow to get the id of document
-          // getDocs(collection(db, 'favorites')).then((res) => {
-          //   dispatch(
-          //     getFavorites(
-          //       res.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-          //     )
-          //   );
-          // });
-          
-            // just after adding collection getfavorite allow to get the id of document
           getDocs(collection(db, 'favorites')).then((res) => {
             let favData = [];
             res.docs.forEach((doc) => {
@@ -65,8 +57,6 @@ const CoinRow = ({ coin, userId, isFav, hasFav }) => {
             : hasFav.coin.filter((id) => id !== data.coin[0]),
         };
 
-        console.log('dbData', dbData);
-
         await updateDoc(doc(db, 'favorites', hasFav.id), dbData).then(() => {
           // add additional data to redux to match first render of dbFavorites
           dbData.id = hasFav.id;
@@ -82,35 +72,42 @@ const CoinRow = ({ coin, userId, isFav, hasFav }) => {
     }
   };
 
-  const athVariation = (coin) => {
-    let variation = ((coin.ath - coin.current_price) / coin.ath) * 100;
-    variation = Math.round(variation * 100) / 100;
-    return variation;
-  };
 
   return (
     <tr>
-      <td className="rank">
+      <td className="market_cap_rank">
         <i
-          className={isFav ? 'fa-solid fa-star favorite' : 'fa-solid fa-star'}
+          className={isFav ? 'fa-solid fa-str favorite' : 'fa-solid fa-star'}
           onClick={handleFavorite}
         ></i>
         {errorConnexion && <p className="message">Must be connected !</p>}
         {coin.market_cap_rank}
       </td>
 
-      <td className="name">
+      <td className="id">
         <img src={coin.image} alt={coin.symbol} className="coin-logo" />{' '}
         <Link to={`/currencies/${coin.id}`}>
           {coin.name} <span className="symbol">{coin.symbol}</span>{' '}
         </Link>
       </td>
 
-      <td> {coin.current_price}</td>
-      <td>{Math.round(coin.price_change_percentage_24h * 100) / 100}%</td>
-      <td>{coin.market_cap}</td>
-      <td>{coin.ath}</td>
-      <td>{athVariation(coin)}%</td>
+      <td> {formatCurrency(coin.current_price)}</td>
+      <td
+        style={{
+          color: coin.price_change_percentage_24h > 0 ? '#16c784' : '#ea3943',
+        }}
+      >
+        {formatPercent(coin.price_change_percentage_24h)}
+      </td>
+      <td>{formatMarketCap(coin.market_cap)}</td>
+      <td>{formatCurrency(coin.ath)}</td>
+      <td
+        style={{
+          color: coin.ath_change_percentage > 0 ? '#16c784' : '#ea3943',
+        }}
+      >
+        {formatPercent(coin.ath_change_percentage)}
+      </td>
     </tr>
   );
 };
