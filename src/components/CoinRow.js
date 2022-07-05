@@ -77,7 +77,7 @@ const CoinRow = ({ coin, userId, isFav, hasFav }) => {
     <tr>
       <td className="market_cap_rank">
         <i
-          className={isFav ? 'fa-solid fa-str favorite' : 'fa-solid fa-star'}
+          className={isFav ? 'fa-solid fa-star favorite' : 'fa-solid fa-star'}
           onClick={handleFavorite}
         ></i>
         {errorConnexion && <p className="message">Must be connected !</p>}

@@ -33,7 +33,7 @@ const CoinRowWatchlist = ({ coin, dbFavorites }) => {
 
   return (
     <tr>
-      <td className="market_rank">
+      <td className="market_cap_rank">
         <i className={'fa-solid fa-star favorite'} onClick={handleFavorite}></i>
         {favCoin.market_cap_rank}
       </td>
@@ -49,10 +49,21 @@ const CoinRowWatchlist = ({ coin, dbFavorites }) => {
       </td>
 
       <td> {formatCurrency(favCoin.market_data?.current_price.usd)}</td>
-      <td>{formatPercent(favCoin.market_data?.price_change_percentage_24h)}</td>
+      <td
+        style={{
+          color:
+            favCoin.market_data?.price_change_percentage_24h > 0
+              ? '#16c784'
+              : '#ea3943',
+        }}
+      >
+        {formatPercent(favCoin.market_data?.price_change_percentage_24h)}
+      </td>
       <td>{formatMarketCap(favCoin.market_data?.market_cap.usd)}</td>
       <td>{formatCurrency(favCoin.market_data?.ath.usd)}</td>
-      <td>{formatPercent(favCoin.market_data?.ath_change_percentage.usd)}</td>
+      <td style={{ color: '#ea3943' }}>
+        {formatPercent(favCoin.market_data?.ath_change_percentage.usd)}
+      </td>
     </tr>
   );
 };

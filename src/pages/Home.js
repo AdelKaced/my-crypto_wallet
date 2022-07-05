@@ -6,7 +6,6 @@ import Pagination from '../components/Pagination';
 const Home = () => {
   return (
     <div>
-      <Header />
       <CoinList />
       <Pagination />
     </div>

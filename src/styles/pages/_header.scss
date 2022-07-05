@@ -1,5 +1,70 @@
 .header {
-    background: grey;
-    height: 30vh;
-    
+  background: linear-gradient(
+    rgb(248, 250, 253) 0%,
+    rgba(248, 250, 253, 0) 413px
+  );
+  height: 30vh;
+  border-top: solid 0.1px rgb(236, 236, 236);
+  border-bottom: solid 0.1px rgb(236, 236, 236);
+  display: grid;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-template-columns: repeat(2, 250px) 450px;
+  .global-data,
+  .trending,
+  .dominance {
+    background: #ffffff;
+    height: 200px;
+    border: rgb(216, 216, 216) solid 1px;
+    border-radius: 20px;
+    box-shadow: 5px -3px 15px 0px #ebeaff;
+  }
+
+  h2 {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 1.2rem;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  h3 {
+    font-weight: 400;
+    font-size: 1rem;
+    span {
+      font-weight: 600;
+    }
+  }
+
+  .global {
+    padding: 20px 10px;
+  }
+
+  .top-trend {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    //   grid-template-rows: 30px 30px 30px ;
+  }
+
+  .coin-dominance{
+    white-space: nowrap;
+    line-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+  }
+  img {
+    width: 25px;
+    height: 25px;
+    border-radius: 30px;
+    margin-right:5px;                                                                                                                                                                                                                                                                                                
+  }
+  .id {
+      text-transform: capitalize;
+  }
+  .symbol {
+   color :rgba(0, 0, 0, 0.39);
+   margin-left: 5px;
+   font-size: 0.8rem;
+   
+  }
 }

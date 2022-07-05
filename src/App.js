@@ -11,6 +11,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { favorites, login } from './features/userSlice';
 import WatchList from './components/WatchList';
+import Header from './components/Header';
 
 export const CoinsContext = createContext();
 
@@ -47,6 +48,7 @@ function App() {
             <Navigation />
             <Connexion />
           </div>
+            <Header />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/watchlist" element={<WatchList />} />
