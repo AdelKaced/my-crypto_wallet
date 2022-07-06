@@ -30,14 +30,7 @@ const CoinResult = () => {
       100;
     if (percent <= 0) percent = 1;
     percent += '%';
-    console.log(
-      coinData.market_data?.current_price.usd -
-        coinData.market_data?.low_24h.usd
-    );
-    console.log(
-      coinData.market_data?.high_24h.usd - coinData.market_data?.low_24h.usd
-    );
-
+  
     return percent;
   };
   return (

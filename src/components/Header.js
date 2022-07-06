@@ -33,19 +33,27 @@ const Header = () => {
       <div className="global-data">
         <h2>Global Data</h2>
         <div className="global">
-          <h3>Total MarketCap: <span> {formatMarketCap(global.total_market_cap?.usd)}</span></h3>
-          <h3>Active Crypto : <span>{global.active_cryptocurrencies}</span></h3>
+          <div className="data-global">
+            <h3>MarketCap</h3>
+            <h4> {formatMarketCap(global.total_market_cap?.usd)}</h4>
+          </div>
+          <div className="data-global">
+            <h3>Active Crypto</h3>
+            <h4>{global.active_cryptocurrencies}</h4>
+          </div>
         </div>
       </div>
       <div className="dominance">
         <h2>Dominance</h2>
         <div className="global">
-          <h3>
-            Bitcoin: {formatPercent(global.market_cap_percentage?.btc)}
-          </h3>
-          <h3>
-            Ethereum: {formatPercent(global.market_cap_percentage?.eth)}
-          </h3>
+          <div className="data-global">
+            <h3>Bitcoin </h3>
+            <h4>{formatPercent(global.market_cap_percentage?.btc)}</h4>
+          </div>
+          <div className="data-global">
+            <h3>Ethereum</h3>
+            <h4>{formatPercent(global.market_cap_percentage?.eth)}</h4>
+          </div>
         </div>
       </div>
       <div className="trending">

@@ -1,16 +1,38 @@
 nav {
-    padding: 20px 0;
+  padding: 20px 0;
 
-ul {
+  ul {
     display: flex;
     justify-content: flex-start;
-}
-li {
+  }
+  li {
     margin-right: 30px;
+  }
+
+  li:hover {
+    color: $color-2;
+  }
+  .logo {
+    position: relative;
+  }
+  img {
+    width: 40px;
+    height: 30px;
+    border-radius: 10px;
+    position: absolute;
+    left: -40px;
+  }
+
+  .logo div {
+    display: flex;
+    align-items: center;
+  }
+  h1 {
+    font-size: 1rem;
+    color: rgb(50, 53, 73);
+  }
 }
 
-li:hover {
-    color: $color-2
-}
-
+@media screen and (max-width:900px) {
+   
 }

@@ -9,7 +9,7 @@
   display: grid;
   justify-content: space-evenly;
   align-items: center;
-  grid-template-columns: repeat(2, 250px) 450px;
+  grid-template-columns: repeat(2, 300px) 450px;
   .global-data,
   .trending,
   .dominance {
@@ -23,20 +23,28 @@
   h2 {
     margin-top: 5px;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-decoration: underline;
     font-weight: 600;
   }
   h3 {
     font-weight: 400;
-    font-size: 1rem;
-    span {
-      font-weight: 600;
-    }
+    font-size: 0.9rem;
+    margin: 10px 0;
   }
+h4{
+  margin-right: 20px;
+  font-size: 0.8rem;
+  font-weight: 550;
 
+}
   .global {
     padding: 20px 10px;
+  }
+  .data-global{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .top-trend {
@@ -45,26 +53,64 @@
     //   grid-template-rows: 30px 30px 30px ;
   }
 
-  .coin-dominance{
+  .coin-dominance {
+    font-size: 0.8rem;
     white-space: nowrap;
     line-height: 40px;
     overflow: hidden;
     text-overflow: ellipsis;
-
   }
   img {
     width: 25px;
     height: 25px;
     border-radius: 30px;
-    margin-right:5px;                                                                                                                                                                                                                                                                                                
+    margin-right: 5px;
+    transform: translateY(7px);
   }
   .id {
-      text-transform: capitalize;
+    text-transform: capitalize;
   }
   .symbol {
-   color :rgba(0, 0, 0, 0.39);
-   margin-left: 5px;
-   font-size: 0.8rem;
-   
+    color: rgba(0, 0, 0, 0.39);
+    margin-left: 5px;
+    font-size: 0.8rem;
   }
 }
+
+@media screen and (max-width: 1350px){
+  .header{
+  // grid-template-columns: repeat(2, 250px) 400px;
+  display:flex;
+  justify-content: space-between;
+  overflow-x: scroll;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+
+  .global-data,
+  .trending,
+  .dominance {
+    flex: 1 0 250px;
+    margin-left: 1rem;
+    scroll-snap-align: start;
+  }
+
+  .trending{
+    margin-right: 1rem;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+}
+
+&::-webkit-scrollbar {
+    height: 6px;
+    background-color: #F5F5F5;
+}
+
+&::-webkit-scrollbar-thumb {
+    background-color: #3d4852;
+    border-radius: 3px;
+}
+ 
+}
+} 
+

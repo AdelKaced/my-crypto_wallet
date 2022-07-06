@@ -1,5 +1,6 @@
 import React from 'react';
-import CoinList from './CoinList';
+import CoinList from '../components/CoinList';
+
 
 const WatchList = () => {
 

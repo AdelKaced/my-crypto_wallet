@@ -95,3 +95,15 @@
     font-size: 0.8rem;
   }
 }
+
+
+@media screen and (max-width:900px) {
+  .market_cap {
+    display: none
+  }
+}
+  @media screen and (max-width:700px) {
+    .ath {
+      display: none
+    }
+  }

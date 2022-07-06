@@ -1,10 +1,15 @@
 .coinChart {
-  padding: 50px 0;
+  margin: 20px 0;
   font-size: 0.9rem;
+  // width: 700px;
+  width:80%;
+  height: 350px;
+  margin: 0 auto;
 
   .btn-container {
     display: flex;
     justify-content: space-around;
+    margin: 30px 0;
   }
 
   .chart {
@@ -15,27 +20,27 @@
     cursor: pointer;
     &:hover {
       // background: $color-2;
-      color: $color-2
+      color: $color-2;
     }
   }
   .active-btn {
     background: $color-2;
     color: white;
     border-radius: 5px;
-    
+
     overflow: hidden;
     &:hover {
       // background: $color-2;
-      color:white;
+      color: white;
+    }
   }
-}
-  .recharts-wrapper{
-      width: 100% !important
-  }
-  .recharts-surface {
-    width: 100% 
-  }
-  .recharts-layer  {
-    font-size: 0.6rem
-  }
+  // .recharts-wrapper{
+  //     width: 100% !important
+  // }
+  // .recharts-surface {
+  //   width: 100%
+  // }
+  // .recharts-layer  {
+  //   font-size: 0.6rem
+  // }
 }

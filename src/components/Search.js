@@ -16,9 +16,12 @@ const Search = () => {
         const filterResult = res.data.filter((coin) => !/\d/.test(coin.id));
         setCoinsData(filterResult);
       });
+    console.log(window);
+    // window.addEventListener('click', setDisplaySearch(false));
   }, []);
 
   const handleInput = (e) => {
+    console.log(e.target.value);
     if (e.target.value) {
       setDisplaySearch(true);
     } else {
@@ -29,8 +32,23 @@ const Search = () => {
 
   return (
     <div className="search">
-      <input type="text" placeholder="Search" onChange={handleInput} />
-      <div className={displaySearch ? 'search-results display' : 'search-results '}>
+      <input
+        type="text"
+        placeholder="Search"
+        value={input}
+        onChange={handleInput}
+        // onClick={() => setDisplaySearch(!displaySearch)}
+        onFocus={() => setDisplaySearch(true)}
+        onBlur={(e) => {
+          setTimeout(() => {
+            setDisplaySearch(false);
+            setInput('');
+          }, 500);
+        }}
+      />
+      <div
+        className={displaySearch ? 'search-results display' : 'search-results '}
+      >
         {input &&
           coinsData
             .filter(
@@ -39,7 +57,12 @@ const Search = () => {
             )
             .map((coin) => (
               <Link key={coin.id} to={`/currencies/${coin.id}`}>
-                <SearchResult coin={coin} setDisplaySearch={setDisplaySearch} setInput={setInput} key={coin.id} />{' '}
+                <SearchResult
+                  coin={coin}
+                  setDisplaySearch={setDisplaySearch}
+                  setInput={setInput}
+                  key={coin.id}
+                />{' '}
               </Link>
             ))}
       </div>

@@ -4,6 +4,7 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
+  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
@@ -61,21 +62,21 @@ const CoinChart = ({ coinId }) => {
           );
         })}
       </div>
-      <div className='chart'>
+      <ResponsiveContainer width="100%" height="100%">
         <AreaChart
-          width={1000}
-          height={350}
+          // width={500}
+          // height={400}
           data={coinData}
           margin={{ top: 0, right: 30, left: 0, bottom: 0 }}
         >
           <XAxis dataKey="date" />
           <YAxis domain={['auto', 'auto']} />
-          <CartesianGrid strokeDasharray="3 3" />
+          {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <Tooltip />
           <defs>
             <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-              <stop offset={-1} stopColor="#82bf82" stopOpacity={1} />
-              <stop offset={1} stopColor="#ff8279" stopOpacity={1} />
+              <stop offset='5%' stopColor="#82bf82"   stopOpacity={1}/>
+              <stop offset='95%' stopColor="#ff8279" stopOpacity={1} />
             </linearGradient>
           </defs>
           <Area
@@ -86,7 +87,7 @@ const CoinChart = ({ coinId }) => {
             fill="url(#splitColor)"
           />
         </AreaChart>
-      </div>
+      </ResponsiveContainer>
     </div>
   );
 };

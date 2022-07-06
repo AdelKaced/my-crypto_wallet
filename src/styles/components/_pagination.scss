@@ -21,3 +21,20 @@
     background-color: $color-2;
   }
 }
+
+@media screen and (max-width: 900px) {
+  .pagination {
+    li {
+    font-size: 0.8rem;
+    margin-right: 5px;
+  }
+}}
+
+// @media screen and (max-width: 600px) {
+//   .pagination {
+//     li {
+//     font-size: 0.6rem;
+//     margin-right: 5px;
+//   }
+// }
+// }

@@ -1,29 +1,28 @@
-import React, { useContext } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { CoinsContext } from '../App';
-import { favorites } from '../features/userSlice';
 
 const Navigation = () => {
-  const context = useContext(CoinsContext);
-  const myFavorites = useSelector(favorites);
-
-
-  const getFavorites = () => {
-    const filterData = context.coins.filter((coin) =>
-      myFavorites.coin.includes(coin.id)
-    );
-    context.setCoins(filterData);
-  };
   return (
     <nav>
       <ul>
-        <li>My Crypto-Wallet Logo</li>
+        <NavLink to="/">
+          <li className="logo">
+            <div>
+              <img src="crypto_logo1.png" />
+              <h1>C-Wallet</h1>
+            </div>
+          </li>
+        </NavLink>
         <NavLink to="/">
           <li>Crypto Market</li>
         </NavLink>
-        <NavLink to="/watchlist"><li>WatchList</li></NavLink>
-        <li>Wallets</li>
+        <NavLink to="/watchlist">
+          <li>WatchList</li>
+        </NavLink>
+        <NavLink to="/wallet">
+          {' '}
+          <li>Wallets</li>
+        </NavLink>
       </ul>
     </nav>
   );

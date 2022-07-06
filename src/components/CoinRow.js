@@ -99,8 +99,8 @@ const CoinRow = ({ coin, userId, isFav, hasFav }) => {
       >
         {formatPercent(coin.price_change_percentage_24h)}
       </td>
-      <td>{formatMarketCap(coin.market_cap)}</td>
-      <td>{formatCurrency(coin.ath)}</td>
+      <td className='market_cap'>{formatMarketCap(coin.market_cap)}</td>
+      <td className='ath'>{formatCurrency(coin.ath)}</td>
       <td
         style={{
           color: coin.ath_change_percentage > 0 ? '#16c784' : '#ea3943',

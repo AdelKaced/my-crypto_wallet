@@ -78,130 +78,144 @@ const CoinList = ({ watchlist }) => {
 
   return (
     <div className="coinList">
-      {!watchlist || user ?
-      <table>
-        <thead>
-          <tr>
-            <th
-              className="market_cap_rank"
-              id="market_cap_rank"
-              onClick={handleSort}
-            >
-              {' '}
-              #
-              {!watchlist && <span
-                className={
-                  Object.keys(sortBy)[0] !== 'market_cap_rank'
-                    ? 'sort'
-                    : sortBy['market_cap_rank']
-                    ? 'sort ascending'
-                    : 'sort descending'
-                }
-              ></span>}
-            </th>
-            <th className="id" id="id" onClick={handleSort}>
-              Name
-              {!watchlist && <span
-                className={
-                  Object.keys(sortBy)[0] !== 'id'
-                    ? 'sort'
-                    : sortBy['id']
-                    ? 'sort ascending'
-                    : 'sort descending'
-                }
-              ></span>}
-            </th>
-            <th id="current_price" onClick={handleSort}>
-              Price
-              {!watchlist && <span
-                className={
-                  Object.keys(sortBy)[0] !== 'current_price'
-                    ? 'sort'
-                    : sortBy['current_price']
-                    ? 'sort ascending'
-                    : 'sort descending'
-                }
-              ></span>}
-            </th>
-            <th id="price_change_24h" onClick={handleSort}>
-              24h %
-              {!watchlist && <span
-                className={
-                  Object.keys(sortBy)[0] !== 'price_change_24h'
-                    ? 'sort'
-                    : sortBy['price_change_24h']
-                    ? 'sort ascending'
-                    : 'sort descending'
-                }
-              ></span>}
-            </th>
-            <th id="market_cap" onClick={handleSort}>
-              MarketCap
-              {!watchlist && <span
-                className={
-                  Object.keys(sortBy)[0] !== 'market_cap'
-                    ? 'sort'
-                    : sortBy['market_cap']
-                    ? 'sort ascending'
-                    : 'sort descending'
-                }
-              ></span>}
-            </th>
-            <th id="ath" onClick={handleSort}>
-              ATH
-              {!watchlist && <span
-                className={
-                  Object.keys(sortBy)[0] !== 'ath'
-                    ? 'sort'
-                    : sortBy['ath']
-                    ? 'sort ascending'
-                    : 'sort descending'
-                }
-              ></span>}
-            </th>
-            <th id="ath_change_percentage" onClick={handleSort}>
-              Percent ATH
-              {!watchlist && <span
-                className={
-                  Object.keys(sortBy)[0] !== 'ath_change_percentage'
-                    ? 'sort'
-                    : sortBy['ath_change_percentage']
-                    ? 'sort ascending'
-                    : 'sort descending'
-                }
-              ></span>}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {!watchlist
-            ? coins
-                .sort((a, b) => getSort(a, b))
-                // .filter((coin) => !watchlist || dbFavorites?.coin.includes(coin.id))
-                .map((coin) => (
-                  <CoinRow
-                    key={coin.symbol}
-                    coin={coin}
-                    userId={user?.uid}
-                    hasFav={dbFavorites} // check if current user has at least one favorite
-                    isFav={isCoinFav(coin.id)} // check if coin mapped is one of the favorite coins
-                  />
-                ))
-            :  dbFavorites && [...dbFavorites?.coin]
-            // .sort((a, b) => b.localeCompare(a))
-            .map((fav) => (
-                <CoinRowWatchlist
-                  key={fav}
-                  coin={fav}
-                  dbFavorites={dbFavorites}
-                />
-              ))
-              }
-        </tbody>
-      </table>
-     : <p>
-       You need to be connected !
-     </p>   }
+      {!watchlist || user ? (
+        <table>
+          <thead>
+            <tr>
+              <th
+                className="market_cap_rank"
+                id="market_cap_rank"
+                onClick={handleSort}
+              >
+                {' '}
+                #
+                {!watchlist && (
+                  <span
+                    className={
+                      Object.keys(sortBy)[0] !== 'market_cap_rank'
+                        ? 'sort'
+                        : sortBy['market_cap_rank']
+                        ? 'sort ascending'
+                        : 'sort descending'
+                    }
+                  ></span>
+                )}
+              </th>
+              <th className="id" id="id" onClick={handleSort}>
+                Name
+                {!watchlist && (
+                  <span
+                    className={
+                      Object.keys(sortBy)[0] !== 'id'
+                        ? 'sort'
+                        : sortBy['id']
+                        ? 'sort ascending'
+                        : 'sort descending'
+                    }
+                  ></span>
+                )}
+              </th>
+              <th id="current_price" onClick={handleSort}>
+                Price
+                {!watchlist && (
+                  <span
+                    className={
+                      Object.keys(sortBy)[0] !== 'current_price'
+                        ? 'sort'
+                        : sortBy['current_price']
+                        ? 'sort ascending'
+                        : 'sort descending'
+                    }
+                  ></span>
+                )}
+              </th>
+              <th id="price_change_24h" onClick={handleSort}>
+                24h %
+                {!watchlist && (
+                  <span
+                    className={
+                      Object.keys(sortBy)[0] !== 'price_change_24h'
+                        ? 'sort'
+                        : sortBy['price_change_24h']
+                        ? 'sort ascending'
+                        : 'sort descending'
+                    }
+                  ></span>
+                )}
+              </th>
+              <th id="market_cap" className="market_cap" onClick={handleSort}>
+                MarketCap
+                {!watchlist && (
+                  <span
+                    className={
+                      Object.keys(sortBy)[0] !== 'market_cap'
+                        ? 'sort'
+                        : sortBy['market_cap']
+                        ? 'sort ascending'
+                        : 'sort descending'
+                    }
+                  ></span>
+                )}
+              </th>
+              <th id="ath"  className='ath' onClick={handleSort}>
+                ATH
+                {!watchlist && (
+                  <span
+                    className={
+                      Object.keys(sortBy)[0] !== 'ath'
+                        ? 'sort'
+                        : sortBy['ath']
+                        ? 'sort ascending'
+                        : 'sort descending'
+                    }
+                  ></span>
+                )}
+              </th>
+              <th id="ath_change_percentage" onClick={handleSort}>
+                Percent ATH
+                {!watchlist && (
+                  <span
+                    className={
+                      Object.keys(sortBy)[0] !== 'ath_change_percentage'
+                        ? 'sort'
+                        : sortBy['ath_change_percentage']
+                        ? 'sort ascending'
+                        : 'sort descending'
+                    }
+                  ></span>
+                )}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {!watchlist
+              ? coins
+                  .sort((a, b) => getSort(a, b))
+                  // .filter((coin) => !watchlist || dbFavorites?.coin.includes(coin.id))
+                  .map((coin) => (
+                    <CoinRow
+                      key={coin.symbol}
+                      coin={coin}
+                      userId={user?.uid}
+                      hasFav={dbFavorites} // check if current user has at least one favorite
+                      isFav={isCoinFav(coin.id)} // check if coin mapped is one of the favorite coins
+                    />
+                  ))
+              : dbFavorites &&
+                [...dbFavorites?.coin]
+                  // .sort((a, b) => b.localeCompare(a))
+                  .map((fav) => (
+                    <CoinRowWatchlist
+                      key={fav}
+                      coin={fav}
+                      dbFavorites={dbFavorites}
+                    />
+                  ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>Please connect you to see your watchlist !</p>
+      )}
     </div>
   );
 };

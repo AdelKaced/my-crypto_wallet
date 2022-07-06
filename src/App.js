@@ -8,10 +8,13 @@ import Home from './pages/Home';
 import { auth } from './utils/firebase.config';
 
 import { onAuthStateChanged } from 'firebase/auth';
-import { useDispatch, useSelector } from 'react-redux';
-import { favorites, login } from './features/userSlice';
-import WatchList from './components/WatchList';
+import { useDispatch } from 'react-redux';
+import { login } from './features/userSlice';
+// import WatchList from './pages/WatchList';
+
 import Header from './components/Header';
+import WatchList from './pages/WatchList';
+import Wallet from './pages/Wallet';
 
 export const CoinsContext = createContext();
 
@@ -19,7 +22,7 @@ function App() {
   const [coins, setCoins] = useState([]);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  const myFavorite = useSelector(favorites);
+  // const myFavorite = useSelector(favorites);
 
   const getData = () => {
     const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=${page}&sparkline=false`;
@@ -33,7 +36,7 @@ function App() {
   useEffect(() => {
     getData();
     onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser.displayName) {
+      if (currentUser?.displayName) {
         dispatch(login(currentUser));
       }
     });
@@ -48,11 +51,12 @@ function App() {
             <Navigation />
             <Connexion />
           </div>
-            <Header />
+          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/watchlist" element={<WatchList />} />
+            <Route path="/watchlist" element={<WatchList/>} />
             <Route path="/currencies/:id" element={<CoinResult />} />
+            <Route path="/wallet" element={<Wallet />} />
           </Routes>
         </BrowserRouter>
       </CoinsContext.Provider>

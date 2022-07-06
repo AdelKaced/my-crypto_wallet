@@ -1,12 +1,14 @@
 import React from 'react';
 
-const SearchResult = ({ coin, setDisplaySearch, setInput }) => {
+const SearchResult = ({ coin, setInput }) => {
+
+
   return (
     <div
       className="search-result"
       onClick={() => {
-        setInput('');
-        setDisplaySearch(false);
+        console.log('test');
+        // setInput('');
       }}
     >
       <span className="id" id={coin.id}>
