@@ -29,6 +29,7 @@ const CoinRowWatchlist = ({ coin, dbFavorites }) => {
         `https://api.coingecko.com/api/v3/coins/${coin}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=false&currency=usd`
       )
       .then((res) => setFavCoin(res.data));
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -48,7 +49,10 @@ const CoinRowWatchlist = ({ coin, dbFavorites }) => {
         </Link>
       </td>
 
-      <td className='market_cap'> {formatCurrency(favCoin.market_data?.current_price.usd)}</td>
+      <td className="market_cap">
+        {' '}
+        {formatCurrency(favCoin.market_data?.current_price.usd)}
+      </td>
       <td
         style={{
           color:
@@ -60,7 +64,7 @@ const CoinRowWatchlist = ({ coin, dbFavorites }) => {
         {formatPercent(favCoin.market_data?.price_change_percentage_24h)}
       </td>
       <td>{formatMarketCap(favCoin.market_data?.market_cap.usd)}</td>
-      <td className='ath'>{formatCurrency(favCoin.market_data?.ath.usd)}</td>
+      <td className="ath">{formatCurrency(favCoin.market_data?.ath.usd)}</td>
       <td style={{ color: '#ea3943' }}>
         {formatPercent(favCoin.market_data?.ath_change_percentage.usd)}
       </td>

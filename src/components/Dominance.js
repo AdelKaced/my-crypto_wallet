@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Dominance = ({trend}) => {
   return (
     <div className='coin-dominance'>
-    <img src={trend.thumb} />
+    <img src={trend.thumb} alt='crypto logo'/>
      <Link to={`currencies/${trend.id}`}><span className="id" id={trend.id}>
         {trend.id}
       </span>
