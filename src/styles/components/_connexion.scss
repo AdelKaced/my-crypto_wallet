@@ -1,15 +1,15 @@
 .connect {
   padding: 10px 0px;
 
-.connexion {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-}
+  .connexion {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+  }
 
-  #Login:hover{
+  #Login:hover {
     color: #3861fb;
   }
 
@@ -19,24 +19,23 @@
     color: white;
     border-radius: 5px;
     white-space: nowrap;
-    margin :0 10px;
+    margin: 0 10px;
   }
   #SignUp:hover {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),
       rgb(56, 97, 251);
   }
   button {
-    
     padding: 2px 6px;
     background: $color-2;
     border-radius: 5px;
     border: none;
     outline: none;
-    color:white;
-    margin :0 10px;
+    color: white;
+    margin: 0 10px;
     cursor: pointer;
-   
-    &:hover{
+
+    &:hover {
       filter: brightness(110%);
     }
   }
@@ -44,20 +43,19 @@
     position: absolute;
     width: 70px;
     top: 30px;
-    right:170px;
+    right: 170px;
     background: rgb(224, 224, 224);
     border-radius: 5px;
     padding: 2px px;
     font-weight: 400;
     text-align: center;
-    color: rgb(53, 53, 53)
+    color: rgb(53, 53, 53);
   }
   .name {
     white-space: nowrap;
     font-weight: 500;
   }
 }
-
 
 .modal {
   position: fixed;
@@ -105,11 +103,20 @@
     border-radius: 5px;
     border: 1px solid rgb(207, 214, 228);
     outline: none;
-    color:white;
+    color: white;
     // font-weight: 600;
-    font-size:1rem
+    font-size: 1rem;
   }
   span {
     color: $color-2;
   }
+}
+
+@media screen and (max-width: 900px) {
+  .connect .name {
+    font-size: 0.7rem;
+  }
+  .connect button {
+    padding: 1px 2px;
+}
 }

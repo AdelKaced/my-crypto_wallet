@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import {
   Area,
   AreaChart,
-  CartesianGrid,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -15,12 +14,12 @@ const CoinChart = ({ coinId }) => {
   const [coinData, setCoinData] = useState();
 
   const headerData = [
-    [1, '1 day'],
-    [3, '3 days'],
-    [7, '7 days'],
-    [30, '1 month'],
-    [181, '6 months'],
-    [365, '1 year'],
+    [1, '1 D'],
+    [3, '3 D'],
+    [7, '7 D'],
+    [30, '1 M'],
+    [181, '6 M'],
+    [365, '1 Y'],
     [3000, 'Max'],
   ];
 
@@ -75,8 +74,8 @@ const CoinChart = ({ coinId }) => {
           <Tooltip />
           <defs>
             <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-              <stop offset='5%' stopColor="#82bf82"   stopOpacity={1}/>
-              <stop offset='95%' stopColor="#ff8279" stopOpacity={1} />
+              <stop offset="5%" stopColor="#82bf82" stopOpacity={1} />
+              <stop offset="95%" stopColor="#ff8279" stopOpacity={1} />
             </linearGradient>
           </defs>
           <Area

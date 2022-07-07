@@ -16,12 +16,12 @@
   }
   .logo {
     position: absolute;
-    left: 0px;
+    left: 5px;
     top: 20px;
     z-index: 1000;
   }
   img {
-    width: 40px;
+    width: 30px;
     height: 30px;
     border-radius: 10px;
     // position: absolute;
@@ -44,6 +44,7 @@
 }
 
 @media screen and (max-width: 1000px) {
+  .navigation {
   nav {
     background: rgb(255, 255, 255);
     height: 40vh;
@@ -74,15 +75,21 @@
     display: block !important;
     font-size: 22px;
     position: absolute;
-    right: 15px;
+    right: 10px;
     top: 25px;
     z-index: 1000;
   }
 }
-
+}
 @media screen and (max-width: 700px) {
-  .App .navigation {
+
+ .navigation {
     font-size: 0.7rem;
+    
+
+
+
+
   }
 
 

@@ -16,6 +16,7 @@
   td {
     padding: 12px;
     text-align: right;
+    vertical-align: middle;
     border-bottom: solid 1px #eff2f5;
     max-width: 100px;
     overflow: hidden;
@@ -34,7 +35,7 @@
   th span.sort {
     position: relative;
     width: 50px;
-    margin-right: 20px;
+    // margin-right: 20px;
   }
 
   th span.sort:after {
@@ -97,9 +98,7 @@
 }
 
 @media screen and (max-width: 900px) {
-  .market_cap {
-    display: none;
-  }
+
   .coinList .coin-logo {
     height: 20px;
     width: 20px;
@@ -110,11 +109,12 @@
   }
 }
 @media screen and (max-width: 700px) {
-  .ath {
+  
+    .market_cap {
     display: none;
   }
   .coinList table {
-    font-size: 0.5rem;
+    font-size: 0.7rem;
   }
   .coinList .coin-logo {
     height: 15px;
@@ -125,4 +125,11 @@
   .coinList td {
     padding: 6px;
   }
+}
+@media screen and (max-width: 700px) {
+
+.ath {
+    display: none;
+  }
+
 }

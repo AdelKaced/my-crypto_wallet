@@ -45,6 +45,7 @@ const CoinList = ({ watchlist }) => {
 
   useEffect(() => {
     getData();
+    // eslint-disable-next-line
   }, [user]);
 
   const handleSort = (e) => {
@@ -157,7 +158,7 @@ const CoinList = ({ watchlist }) => {
                   ></span>
                 )}
               </th>
-              <th id="ath"  className='ath' onClick={handleSort}>
+              <th id="ath" className="ath" onClick={handleSort}>
                 ATH
                 {!watchlist && (
                   <span
@@ -172,7 +173,7 @@ const CoinList = ({ watchlist }) => {
                 )}
               </th>
               <th id="ath_change_percentage" onClick={handleSort}>
-                Percent ATH
+                ATH %
                 {!watchlist && (
                   <span
                     className={

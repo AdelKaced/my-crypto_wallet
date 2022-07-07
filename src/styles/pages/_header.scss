@@ -21,7 +21,7 @@
   }
 
   h2 {
-    margin-top: 5px;
+    margin: 5px 0px ;
     text-align: center;
     font-size: 1.1rem;
     text-decoration: underline;
@@ -39,6 +39,11 @@
   }
   .global {
     padding: 0px 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+    height: 70%;
+    flex-direction: column;
   }
   .data-global {
     display: flex;
