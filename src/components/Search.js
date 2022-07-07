@@ -53,7 +53,7 @@ const Search = () => {
           coinsData
             .filter(
               (coin) =>
-                coin.id.startsWith(input) || coin.symbol.startsWith(input)
+                coin.id.startsWith(input.toLowerCase()) || coin.symbol.startsWith(input.toLowerCase())
             )
             .map((coin) => (
               <Link key={coin.id} to={`/currencies/${coin.id}`}>
