@@ -1,13 +1,19 @@
 .App {
   width: 80%;
   margin: 0 auto;
-  // background: white;
 
   .navigation {
     display: grid;
     grid-template-columns: 70% 30%;
     font-size: 0.8rem;
     align-items: center;
+    padding:10px 0
   }
 }
 
+@media screen and (max-width: 1000px) {
+// .App {
+//   width: 100%;
+// }
+
+}

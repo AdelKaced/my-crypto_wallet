@@ -2,7 +2,7 @@
   
   position: relative;
   input {
-    width:  180px;
+    // width:  180px;
     border-radius: 8px;
     user-select: none;
     background-color:#efefef;
@@ -18,7 +18,6 @@
 
   input:focus{
     color: rgb(41, 41, 41);
-    width:180px;
     background: rgb(241, 241, 241)
   }
   .search-results{
@@ -36,9 +35,21 @@
     box-shadow: 3px -1px 4px 0px #fefffff5;
     border: none;
     visibility: hidden;
+    z-index: 100;
   }
   .display {
     visibility: visible;
   }
 
+}
+
+@media screen and (max-width: 1000px) {
+.search input {
+  width: 100px
+}
+.search-results {
+  width: 150px !important;
+  right: -20px !important;
+  top: 35px !important;
+}
 }

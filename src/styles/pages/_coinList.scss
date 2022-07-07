@@ -1,5 +1,6 @@
 .coinList {
   padding: 20px 0;
+  margin: 10px 0 0;
   table {
     width: 100%;
     font-size: 0.8rem;
@@ -45,15 +46,14 @@
     position: absolute;
     width: 0;
     margin-top: 1px;
-    
   }
 
-  th span.sort.ascending:after{
+  th span.sort.ascending:after {
     border-top-color: #666;
     top: 40%;
   }
 
-  th span.sort.descending:after{
+  th span.sort.descending:after {
     border-bottom-color: #666;
     top: 10%;
   }
@@ -96,14 +96,33 @@
   }
 }
 
-
-@media screen and (max-width:900px) {
+@media screen and (max-width: 900px) {
   .market_cap {
-    display: none
+    display: none;
+  }
+  .coinList .coin-logo {
+    height: 20px;
+    width: 20px;
+  }
+  .coinList th,
+  .coinList td {
+    padding: 8px;
   }
 }
-  @media screen and (max-width:700px) {
-    .ath {
-      display: none
-    }
+@media screen and (max-width: 700px) {
+  .ath {
+    display: none;
   }
+  .coinList table {
+    font-size: 0.5rem;
+  }
+  .coinList .coin-logo {
+    height: 15px;
+    width: 15px;
+  }
+
+  .coinList th,
+  .coinList td {
+    padding: 6px;
+  }
+}

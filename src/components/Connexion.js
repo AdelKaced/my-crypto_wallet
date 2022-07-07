@@ -26,7 +26,7 @@ const Connexion = () => {
     await signOut(auth).then(()=> dispatch(logout()))
   };
   return (
-    <div>
+    <div className='connect'>
       {user ? (
         <div className="connexion">
           <div className="name">Welcome {user.displayName}</div>

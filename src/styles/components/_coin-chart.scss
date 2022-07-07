@@ -2,8 +2,8 @@
   margin: 20px 0;
   font-size: 0.9rem;
   // width: 700px;
-  width:80%;
-  height: 350px;
+  width: 80%;
+  height: 300px;
   margin: 0 auto;
 
   .btn-container {
@@ -43,4 +43,19 @@
   // .recharts-layer  {
   //   font-size: 0.6rem
   // }
+}
+
+@media screen and (max-width: 900px) {
+  .coinChart {
+    height: 300px;
+    width: 100%;
+  }
+  .coinChart .btn {
+    padding: 2px 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+  h3 {
+    white-space: nowrap;
+  }
 }

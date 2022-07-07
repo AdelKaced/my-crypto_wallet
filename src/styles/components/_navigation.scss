@@ -1,26 +1,31 @@
-nav {
+.navigation {
   padding: 20px 0;
+  // position: relative;
 
   ul {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
   }
   li {
     margin-right: 30px;
+    font-size: 1rem;
   }
 
   li:hover {
     color: $color-2;
   }
   .logo {
-    position: relative;
+    position: absolute;
+    left: 0px;
+    top: 20px;
+    z-index: 1000;
   }
   img {
     width: 40px;
     height: 30px;
     border-radius: 10px;
-    position: absolute;
-    left: -40px;
+    // position: absolute;
+    // left: -40px;
   }
 
   .logo div {
@@ -31,8 +36,54 @@ nav {
     font-size: 1rem;
     color: rgb(50, 53, 73);
   }
+
+  .menu,
+  .cross {
+    display: none;
+  }
 }
 
-@media screen and (max-width:900px) {
-   
+@media screen and (max-width: 1000px) {
+  nav {
+    background: rgb(255, 255, 255);
+    height: 40vh;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    // transform: translateX(-10%);
+    left: -100%;
+    z-index: 100;
+    transition: 1s;
+  }
+  .show-menu {
+    left: 0%;
+  }
+  nav ul {
+    flex-direction: column;
+    left: 150px;
+    top: 50px;
+    position: absolute;
+  }
+
+  ul li {
+    line-height: 40px;
+  }
+
+  .menu,
+  .cross {
+    display: block !important;
+    font-size: 22px;
+    position: absolute;
+    right: 15px;
+    top: 25px;
+    z-index: 1000;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .App .navigation {
+    font-size: 0.7rem;
+  }
+
+
 }

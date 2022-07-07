@@ -1,10 +1,13 @@
+.connect {
+  padding: 10px 0px;
+
 .connexion {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   cursor: pointer;
   position: relative;
- 
+}
 
   #Login:hover{
     color: #3861fb;

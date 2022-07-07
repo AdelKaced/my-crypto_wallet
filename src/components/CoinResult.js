@@ -6,7 +6,6 @@ import CoinChart from './CoinChart';
 const CoinResult = () => {
   const [coinData, setCoinData] = useState('');
   const params = useParams();
-  
 
   const getCoinData = () => {
     axios
@@ -18,7 +17,7 @@ const CoinResult = () => {
 
   useEffect(() => {
     getCoinData();
-     // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [params]);
 
   const getProgressDay = () => {
@@ -30,24 +29,31 @@ const CoinResult = () => {
       100;
     if (percent <= 0) percent = 1;
     percent += '%';
-  
+
     return percent;
   };
   return (
     <div>
       <div className="result-header">
-      
-          <div className="main">
-            <img src={coinData.image?.small} alt={coinData.id} />
-            <h1>{coinData.id}</h1>
-            <h2>{coinData.symbol}</h2>
-          </div>
-      
+        <div className="main">
+          <img src={coinData.image?.small} alt={coinData.id} />
+          <h1>{coinData.id}</h1>
+          <h2>{coinData.symbol}</h2>
+        </div>
+
         <div className="market-data">
           <div className="current-price">
             <h3>$ {coinData.market_data?.current_price.usd}</h3>
 
-            <h4>
+            <h4
+              style={{
+                background:
+                  coinData.market_data?.price_change_percentage_24h_in_currency
+                    .usd > 0
+                    ? '#16c784'
+                    : '#ea3943',
+              }}
+            >
               {Math.round(
                 coinData.market_data?.price_change_percentage_24h_in_currency
                   .usd * 100

@@ -25,16 +25,17 @@
 @media screen and (max-width: 900px) {
   .pagination {
     li {
-    font-size: 0.8rem;
-    margin-right: 5px;
+    font-size: 0.9rem;
+    margin-right: 6px;
+    padding: 1px 10px;
   }
 }}
 
-// @media screen and (max-width: 600px) {
-//   .pagination {
-//     li {
-//     font-size: 0.6rem;
-//     margin-right: 5px;
-//   }
-// }
-// }
+@media screen and (max-width: 600px) {
+  .pagination {
+    li {
+    font-size: 0.6rem;
+    margin-right: 5px;
+  }
+}
+}
