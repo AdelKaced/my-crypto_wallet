@@ -49,7 +49,7 @@ const CoinRowWatchlist = ({ coin, dbFavorites }) => {
         </Link>
       </td>
 
-      <td className="market_cap">
+      <td >
         {' '}
         {formatCurrency(favCoin.market_data?.current_price.usd)}
       </td>
@@ -63,7 +63,7 @@ const CoinRowWatchlist = ({ coin, dbFavorites }) => {
       >
         {formatPercent(favCoin.market_data?.price_change_percentage_24h)}
       </td>
-      <td>{formatMarketCap(favCoin.market_data?.market_cap.usd)}</td>
+      <td className="market_cap">{formatMarketCap(favCoin.market_data?.market_cap.usd)}</td>
       <td className="ath">{formatCurrency(favCoin.market_data?.ath.usd)}</td>
       <td style={{ color: '#ea3943' }}>
         {formatPercent(favCoin.market_data?.ath_change_percentage.usd)}
